@@ -1,8 +1,9 @@
-
-import {openImagePopup} from '../index.js' 
-
+import { openPopup } from "./modal.js";
 
 const cardElement = document.querySelector('#card-template');
+const imagePopup = document.querySelector('.popup__image');
+const cardImageCaption = document.querySelector('.popup__caption'); 
+const popupImage = document.querySelector('.popup_type_image'); //попап для картинок 
 
 function createCards(card, deleteCard, likeCard, openImagePopup) {
   const cardElementCopy = cardElement.content.cloneNode(true);
@@ -22,6 +23,15 @@ function createCards(card, deleteCard, likeCard, openImagePopup) {
   likeButton.addEventListener('click', () => {
     likeCard(likeButton);
   })
+
+  
+  cardImage.addEventListener('click', function () {
+    const imageSrc = cardImage.src;
+    const title = cardImage.closest('.card').querySelector('.card__title').textContent;
+    openImagePopup(imageSrc, title);
+  });
+  
+
   
   return cardElementCopy;
 }
@@ -37,4 +47,12 @@ function likeCard(button) {
   button.classList.toggle('card__like-button_is-active');
 }
 
-export {createCards, deleteCard, likeCard};
+
+function openImagePopup (imageSrc, title) {
+  imagePopup.src = imageSrc; 
+  imagePopup.alt = title;
+  cardImageCaption.textContent = title;
+  openPopup(popupImage); // Показываем попап
+}
+
+export {createCards, deleteCard, likeCard, openImagePopup};
