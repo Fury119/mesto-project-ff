@@ -1,9 +1,6 @@
-import { openPopup } from "./modal.js";
 
 const cardElement = document.querySelector('#card-template');
-const imagePopup = document.querySelector('.popup__image');
-const cardImageCaption = document.querySelector('.popup__caption'); 
-const popupImage = document.querySelector('.popup_type_image'); //попап для картинок 
+
 
 function createCards(card, deleteCard, likeCard, openImagePopup) {
   const cardElementCopy = cardElement.content.cloneNode(true);
@@ -48,11 +45,6 @@ function likeCard(button) {
 }
 
 
-function openImagePopup (imageSrc, title) {
-  imagePopup.src = imageSrc; 
-  imagePopup.alt = title;
-  cardImageCaption.textContent = title;
-  openPopup(popupImage); // Показываем попап
-}
 
-export {createCards, deleteCard, likeCard, openImagePopup};
+
+export {createCards, deleteCard, likeCard};

@@ -16,7 +16,7 @@ function closeEsc (evt) {
   }
 }
 
-function closeOverlay (popup) {
+function addClosePopupByOverlayListener (popup) {
   popup.addEventListener('click', function (evt) {
     if (evt.target === popup) {
       closePopup(popup);
@@ -25,4 +25,4 @@ function closeOverlay (popup) {
 };
 
 
-export {openPopup, closePopup, closeEsc, closeOverlay};
+export {openPopup, closePopup, closeEsc, addClosePopupByOverlayListener};

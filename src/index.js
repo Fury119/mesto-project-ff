@@ -1,6 +1,6 @@
-import {createCards, deleteCard, likeCard, openImagePopup} from './components/card.js';
+import {createCards, deleteCard, likeCard} from './components/card.js';
 import './pages/index.css';
-import { openPopup, closePopup, closeEsc, closeOverlay } from './components/modal.js';
+import { openPopup, closePopup, closeEsc, addClosePopupByOverlayListener } from './components/modal.js';
 import {initialCards} from './components/cards.js'
 
     
@@ -81,6 +81,18 @@ function imageFormSubmit(evt) {
 
 imageForm.addEventListener('submit', imageFormSubmit);
 
+const imagePopup = document.querySelector('.popup__image');
+const cardImageCaption = document.querySelector('.popup__caption'); 
+//const popupImage = document.querySelector('.popup_type_image'); //попап для картинок 
+
+
+function openImagePopup (imageSrc, title) {
+  imagePopup.src = imageSrc; 
+  imagePopup.alt = title;
+  cardImageCaption.textContent = title;
+  openPopup(popupImage); // Показываем попап
+}
+
 
 closeButtonImage.addEventListener('click', function () {
   closePopup(popupImage);
@@ -91,7 +103,7 @@ closeButtonImage.addEventListener('click', function () {
 
 // Закрытие попапов кликом на оверлей
 const popups = document.querySelectorAll('.popup');
-popups.forEach(closeOverlay);
+popups.forEach(addClosePopupByOverlayListener);
 
 
 
